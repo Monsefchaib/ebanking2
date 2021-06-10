@@ -1,0 +1,143 @@
+<h1>Tout les virements</h1>
+
+<div *ngFor="let compte of comptes">
+  
+  <h3>numero de compte : {{compte.numero}}</h3>
+  <div class="row" id='main-container'>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Virements Envoyer :</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  id
+                </th>
+                <th>
+                  num creancier
+                </th>
+                <th>
+                  num debiteur
+                </th>
+                <th>
+                  date
+                </th>
+                <th>
+                  somme envoyer
+                </th>
+                <th>
+                  somme reçu
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let virement of compte.virementsEnvoyes">
+                  <td>{{ virement.id }}</td>
+                  <td>{{ virement.creancier.numero }}</td>
+                  <td>{{ virement.debiteur.numero }}</td>
+                  <td>{{ virement.date }}</td>
+                  <td>{{ virement.sommeEnv }}</td>
+                  <td>{{ virement.sommeRecu }}</td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" id='main-container'>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title"> Virements Reçu :</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  id
+                </th>
+                <th>
+                  num creancier
+                </th>
+                <th>
+                  num debiteur
+                </th>
+                <th>
+                  date
+                </th>
+                <th>
+                  somme envoyer
+                </th>
+                <th>
+                  somme reçu
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let virement of compte.virementsRecus">
+                  <td>{{ virement.id }}</td>
+                  <td>{{ virement.creancier.numero }}</td>
+                  <td>{{ virement.debiteur.numero }}</td>
+                  <td>{{ virement.date }}</td>
+                  <td>{{ virement.sommeEnv }}</td>
+                  <td>{{ virement.sommeRecu }}</td>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="onOpenModal()" class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="nc-icon nc-simple-add"></i> Nouveau Virement</button>
+
+<div class="modal fade" id="addCustomer" tabindex="-1" role="dialog" aria-labelledby="addCustomerLabel" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="updateEmployeeModalLabel">Nouveau Virement</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #addForm="ngForm">
+              <div class="form-group">
+                 <label for="numC">num creancier :</label>
+                 <input type="text" [(ngModel)]="numCreancier" name="numC" class="form-control" id="numC" aria-describedby="emailHelp" placeholder="num creancier">
+              </div>
+              <div class="form-group">
+                 <label for="numD">num debiteur :</label>
+                 <input type="text" [(ngModel)]="numDebiteur" name="numD" class="form-control" id="email" placeholder="num debiteur">
+              </div>
+              <div class="form-group">
+                 <label for="sommeEnv">somme à envoyer:</label>
+                 <input type="number" [(ngModel)]="sommeEnv" name="sommeEnv" class="form-control" id="sommeEnv" placeholder="0000.00 DH">
+              </div>
+              <div class="modal-footer">
+                 <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                 <button (click)="addVirement(addForm,numCreancier,numDebiteur)" data-dismiss="modal" class="btn btn-primary" >Efefctuer virement</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- <div *ngFor="let compte of comptes">
+          <label>num creancier :</label>
+                 <td>{{ compte.id }}</td>
+                 <label >Virements Recus :</label>
+                   <div *ngFor="let vR of compte.virementsRecus">
+                       <td>{{ vR.sommeEnv }}</td>
+                    </div>
+                   <label >Virement env :</label>
+                     <div *ngFor="let vR of compte.virementsEnvoyes">
+                     <td>{{ vR.sommeEnv }}</td>
+                   </div>
+</div> -->
+         
